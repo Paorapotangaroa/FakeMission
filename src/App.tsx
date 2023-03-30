@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
+import MovieTable from './MovieTable';
+import Layout from './layout';
+import Home from './Home';
+import Podcasts from './Podcasts';
 
+
+// Add router navigation to the app.(Also add inheritance for the home page)
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route index element={<Home/>} />
+          <Route path="movies" element={<MovieTable />}/>
+          <Route path='podcasts' element={<Podcasts />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
